@@ -35,10 +35,3 @@ let
 }",
 	Kilde = Web.Contents("https://data.ssb.no/api/v0/no/table/06194/", [Content=Text.ToBinary(PostContents)]),
 	Data=Csv.Document(Kilde, [Encoding=1252]),
-    #"Promoted Headers" = Table.PromoteHeaders(Data, [PromoteAllScalars=true]),
-    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"region", type text}, {"år", Int64.Type}, {"statistikkvariabel", type text}, {"06194: Omdisponering av dyrka og dyrkbar jord etter jordloven og plan- og bygningsloven,", Int64.Type}}),
-    #"Renamed Columns" = Table.RenameColumns(#"Changed Type",{{"06194: Omdisponering av dyrka og dyrkbar jord etter jordloven og plan- og bygningsloven,", "Dekar"}}),
-    #"Split Column by Delimiter" = Table.SplitColumn(#"Renamed Columns", "region", Splitter.SplitTextByEachDelimiter({" "}, QuoteStyle.Csv, false), {"region.1", "region.2"}),
-    #"Changed Type1" = Table.TransformColumnTypes(#"Split Column by Delimiter",{{"region.1", type text}, {"region.2", type text}})
-in
-	#"Changed Type1"
