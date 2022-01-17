@@ -4,13 +4,19 @@ let
     {
       ""code"": ""Region"",
       ""selection"": {
-        ""filter"": ""item"",
+        ""filter"": ""agg_single:FylkerFastland"",
         ""values"": [
-          ""0"",
           ""30"",
-          ""01"",
-          ""2599"",
-          ""9999""
+          ""03"",
+          ""34"",
+          ""38"",
+          ""42"",
+          ""11"",
+          ""46"",
+          ""15"",
+          ""50"",
+          ""18"",
+          ""54""
         ]
       }
     },
@@ -21,16 +27,6 @@ let
         ""values"": [
           ""999A"",
           ""00-19a""
-        ]
-      }
-    },
-    {
-      ""code"": ""ContentsCode"",
-      ""selection"": {
-        ""filter"": ""item"",
-        ""values"": [
-          ""TilgangRekAreal"",
-          ""TilgangNaerturterr""
         ]
       }
     },
@@ -47,7 +43,6 @@ let
   ""response"": {
     ""format"": ""csv2""
   }
-}
-",
+}",
 	Kilde = Web.Contents("https://data.ssb.no/api/v0/no/table/09579/", [Content=Text.ToBinary(PostContents)]),
 	Data=Csv.Document(Kilde, [Encoding=1252]),
